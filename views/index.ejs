@@ -4,17 +4,16 @@
     <%- include('./partials/head.ejs') %>
   </head>
   <body>
-    <header>
       <%- include('./partials/header.ejs') %>
-    </header>
     <div class="heading-image">
       <img class="img-fluid" src=" https://images.unsplash.com/photo-1549063729-f02aba455bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="coffee">
     </div>
-    <section class="mixin-container">
+    <section class="why-container">
       <h2>Why Coffee?</h2>
-      <hr>
       <div class="info-container">
-        <img class="img-fluid" src="https://images.unsplash.com/photo-1587302186428-d3753405ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80" alt="coffee in a cup">
+        <div class="image-container">
+          <img id="coffee-image" src="https://images.unsplash.com/photo-1587302186428-d3753405ffed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80" alt="coffee in a cup">
+        </div>
         <div class="facts-container">
           <p>Coffee has a stimulating affect on humans primarily due to the caffine content. Coffee has developed into an array of delacacies such as lattes, mochiatos, and mochas. Not only can coffee help
           energize you for your day, but it is also delicious!</p>
@@ -39,6 +38,29 @@
         </div>
       </div>
     </section>
+    <section class="mixin-container">
+      <h2>Main Mixins</h2>
+      <div class="mix-images-container">
+        <div class="mix-image">
+          <img src="" alt="">
+          <p>Coffee/Espresso</p>
+        </div>
+        <div class="mix-image">
+          <img src="" alt="">
+          <p>Milk/Cream</p>
+        </div>
+        <div class="mix-image">
+          <img src="" alt="">
+          <p>Syrups</p>
+        </div>
+        <div class="mix-image">
+          <img src="" alt="">
+          <p>Powders</p>
+        </div>
+      </div>
+    </section>
+  <footer>
   <%- include('./partials/footer.ejs') %>
+  </footer>
   </body>
 </html>

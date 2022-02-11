@@ -7,6 +7,7 @@ const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
+const Coffee = require('./models/coffeeflavors.js')
 //___________________
 //Port
 //___________________
@@ -56,7 +57,24 @@ app.get('/coffee', (req, res) => {
   res.render('index.ejs')
 })
 
+app.get('/coffee/creations', (req, res) => {
+  res.render('hello')
+})
 
+app.get('/coffee/new', (req, res) => {
+  res.render('new.ejs');
+})
+app.get('/coffee/:id/edit', (req, res) => {
+  Coffee.findById(req.params.id , (error, foundCoffee) => {
+    res.render('edit.ejs',
+    {
+      coffee:foundCoffee
+    })
+  })
+})
+app.post('/coffee', (req, res) => {
+
+})
 //___________________
 //Listener
 //___________________
