@@ -4,10 +4,27 @@
     <%- include('./partials/head.ejs') %>
   </head>
   <body>
-    <header>
       <%- include('./partials/header.ejs') %>
-    </header>
-
+      <section class="container-form">
+      <div class="title">
+        <h2>Create Your Own Coffee Drink</h2>
+      </div>
+      <div class="form-container">
+        <form  action="#" method="POST">
+          <label for="name">Name Your Drink:</label><br/>
+          <input type="text" name="name" placeholder="Vanilla Mocha Latte">
+          <label for="base">Coffee or Esspresso:</label><br/>
+          <input type="text" name="base" placeholder="Esspresso">
+          <label for="dairy">Milk or Cream:</label><br/>
+          <input type="text" name="dairy" placeholder="Almond Milk">
+          <label for="syrup">Syrup:</label><br/>
+          <input type="text" name="syrup" placeholder="Vanilla, White Chocolate, Caramel">
+          <label for="added">Powders and Others: </label><br/>
+          <input type="text" name="added" placeholder="Sugar, Cinnomon, Nutmeg">
+          <input class="submit-button" type="submit" value="Create Drink">
+        </form>
+      </div>
+      </section>
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>

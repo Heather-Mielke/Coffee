@@ -15,6 +15,7 @@ body {
   position: fixed;
   transition: all .5s ease-in;
   z-index: 2;
+  top: 0;
 }
 .brand-name {
   margin-left: 2vw;
@@ -216,9 +217,48 @@ body {
   font-size: 15px;
   list-style: circle;
 }
+/* NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE */
 
-/* .mixin-container > img{
-  opacity: .3;
-  box-shadow: 0 3px 10px rgb(150 150 150 / .8);
-  filter: grayscale(.5);
-} */
+.container-form {
+  margin: 140px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background: url('/images/liquid-border.png') no-repeat;
+  background-size: cover;
+}
+.title > h2{
+  font-size: 4.5vw;
+  padding: 3vw;
+  border-bottom: 1px solid white;
+  text-shadow: 0 3px 10px rgb(0 0 0 / .9);
+  margin-bottom: 3vw;
+}
+.form-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+label {
+  font-size: 22px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / .9);
+}
+input {
+  width: 100%;
+  margin: 1vw 0;
+  border: none;
+  padding: .5vw;
+  box-shadow: 0 3px 10px rgb(0 0 0 / .9);
+}
+.submit-button {
+  background: linear-gradient( #603813, #b29f94);
+  border: 1px outset black;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / .9);
+  font-size: 25px;
+  margin: 5vw 0;
+}
