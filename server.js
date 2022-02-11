@@ -52,6 +52,11 @@ app.get('/' , (req, res) => {
   res.send('Hello World!');
 });
 
+app.get('/coffee', (req, res) => {
+  res.render('index.ejs')
+})
+
+
 //___________________
 //Listener
 //___________________
