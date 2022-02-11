@@ -23,7 +23,7 @@ body {
 }
 .brand-name > h2 {
   font-family: 'Cantata One', serif;
-  font-size: 50px;
+  font-size: 40px;
   margin-bottom: 0;
   text-transform: uppercase;
 }
@@ -217,6 +217,51 @@ body {
   font-size: 15px;
   list-style: circle;
 }
+.mixin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vw 0;
+}
+.mixin-container > h2 {
+  margin: 0 0 3vw 0;
+  font-size: 5vw;
+  border-bottom: 1px outset white;
+  padding: 0 3vw 2vw 3vw;
+  opacity: .9;
+}
+.mix-images-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.mix-image {
+  width: 20%;
+  display: flex;
+  /* max-height: 15rem; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgb( 0 0 0 /.9);
+  border-radius: 20%;
+  padding: 1vw 0 ;
+  overflow: hidden;
+}
+.mix-image > img {
+  width: 100%;
+  /* object-fit: contain; */
+  border-radius: 2px;
+  opacity: .8;
+}
+.mix-image > p {
+  font-size: 2vw;
+  margin-top: 1vw;
+  opacity: .8;
+}
 /* NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE */
 
 .container-form {
@@ -261,4 +306,14 @@ input {
   box-shadow: 0 3px 10px rgb(0 0 0 / .9);
   font-size: 25px;
   margin: 5vw 0;
+}
+/* new page new page new page new page new page */
+footer {
+  width: 100%;
+  background-color: black;
+  bottom: 0;
+}
+ion-icon {
+  font-size: 50px;
+  color: black;
 }
