@@ -64,6 +64,19 @@ app.get('/coffee/creations', (req, res) => {
 app.get('/coffee/new', (req, res) => {
   res.render('new.ejs');
 })
+app.post('/coffee/usercreation', (req, res) => {
+  Coffee.create(req.body, (error, newCoffee) => {
+    if (error) {
+      console.log(error);
+    }else{
+    res.send(newCoffee)
+  }
+  })
+})
+app.get('/coffee/usercreation', (req, res) => {
+  res.render('userdrinks.ejs')
+})
+
 app.get('/coffee/:id/edit', (req, res) => {
   Coffee.findById(req.params.id , (error, foundCoffee) => {
     res.render('edit.ejs',
@@ -72,9 +85,14 @@ app.get('/coffee/:id/edit', (req, res) => {
     })
   })
 })
-app.post('/coffee', (req, res) => {
-
+app.delete('/coffee/usercreation/:id', (req, res) => {
+  Coffee.findByIdAndRemove(req.params.id, (error, data) => {
+    console.log(error);
+    res.send("Being deleted....");
+  })
 })
+
+
 //___________________
 //Listener
 //___________________

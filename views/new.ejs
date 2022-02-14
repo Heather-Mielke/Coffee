@@ -10,7 +10,7 @@
         <h2>Create Your Own Coffee Drink</h2>
       </div>
       <div class="form-container">
-        <form  action="#" method="POST">
+        <form  action="/coffee/usercreation" method="POST">
           <label for="name">Name Your Drink:</label><br/>
           <input type="text" name="name" placeholder="Vanilla Mocha Latte">
           <label for="base">Coffee or Esspresso:</label><br/>
@@ -25,6 +25,8 @@
         </form>
       </div>
       </section>
-    <%- include('./partials/footer.ejs') %>
+    <footer>
+      <%- include('./partials/footer.ejs') %>
+    </footer>
   </body>
 </html>
