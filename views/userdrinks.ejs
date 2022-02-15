@@ -6,7 +6,30 @@
   <body>
       <%- include('./partials/header.ejs') %>
       <section class="flex-container">
-
+        <h3>Your Creations</h3>
+        <div class="all-drinks">
+          <% for(let i = 0; i < coffee.length; i++) { %>
+            <div class="coffee-container">
+              <div class="coffee-image-conatainer">
+                <img src="" alt="">
+              </div>
+              <h4><%= coffee[i].name %></h4>
+              <ul>
+                <li>Type: <%= coffee[i].type %></li>
+                <li>Base: <%= coffee[i].base %></li>
+                <li>Dairy: <%= coffee[i].diary %></li>
+                <li>Syrup/s: <%= coffee[i].syrup %></li>
+                <li>Additionals: <%= coffee[i].added %></li>
+              </ul>
+            </div>
+            <div class="coffee-buttons">
+              <a class="edit-link" href="/coffee/usercreations/<%= coffee[i].id %>/edit">EDIT</a>
+              <form action="/coffee/usercreations/<%= coffee[i].id %>?_method=DELETE" method="POST">
+                  <input class="delete-button" type="submit" value="DELETE">
+              </form>
+            </div>
+          <% } %>
+        </div>
       </section>
 
     <footer>

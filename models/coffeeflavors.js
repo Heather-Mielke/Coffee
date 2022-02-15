@@ -12,4 +12,4 @@ const coffeeSchema = new Schema ({
 
 const coffeeCollection = mongoose.model('Coffee', coffeeSchema);
 
-module.export = coffeeCollection;
+module.exports = coffeeCollection;

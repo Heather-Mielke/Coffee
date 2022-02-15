@@ -3,7 +3,7 @@
 //___________________
 const express = require('express');
 const methodOverride  = require('method-override');
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -64,17 +64,20 @@ app.get('/coffee/creations', (req, res) => {
 app.get('/coffee/new', (req, res) => {
   res.render('new.ejs');
 })
-app.post('/coffee/usercreation', (req, res) => {
-  Coffee.create(req.body, (error, newCoffee) => {
-    if (error) {
-      console.log(error);
-    }else{
-    res.send(newCoffee)
-  }
-  })
+app.put('/coffee/usercreations:id', (req, res) => {
+  res.send('updating.....')
+  // Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedDrink) => {
+  //   res.redirect('coffee/usercreations')
+  // })
 })
-app.get('/coffee/usercreation', (req, res) => {
-  res.render('userdrinks.ejs')
+
+app.get('/coffee/usercreations', (req, res) => {
+  Coffee.find({}, (error, allCoffee) => {
+    res.render('userdrinks.ejs',
+    {
+      coffee: allCoffee
+    })
+  })
 })
 
 app.get('/coffee/:id/edit', (req, res) => {
@@ -85,10 +88,20 @@ app.get('/coffee/:id/edit', (req, res) => {
     })
   })
 })
-app.delete('/coffee/usercreation/:id', (req, res) => {
+app.delete('/coffee/usercreations/:id', (req, res) => {
   Coffee.findByIdAndRemove(req.params.id, (error, data) => {
     console.log(error);
     res.send("Being deleted....");
+  })
+})
+app.post('/coffee/usercreations', (req, res) => {
+  Coffee.create(req.body, (error, newCoffee) => {
+  //   if (error) {
+  //     console.log(error);
+  //   }else{
+  //   res.send(newCoffee)
+  // }
+  res.redirect('/coffee/usercreations')
   })
 })
 

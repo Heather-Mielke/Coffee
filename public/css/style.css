@@ -159,7 +159,7 @@ body {
   background: url('https://images.unsplash.com/photo-1580933073521-dc49ac0d4e6a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80') no-repeat;
   background-size: cover;
   /* opacity: .3; */
-  box-shadow: 0 3px 10px rgb(99 40 15 / .8);
+  box-shadow: 5px 5px 10px rgb(0 0 0 / .9);
   filter: opacity(90%) brightness(85%) ;
   display: flex;
   flex-direction: column;
@@ -173,6 +173,7 @@ body {
   transition: all .5s ease;
   border-bottom: 1px solid white;
   padding: 1vw 4vw;
+  text-shadow: 5px 5px 10px rgb(0 0 0 / .9);
 }
 .info-container {
   display: flex;
@@ -230,6 +231,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 5vw 0;
+  margin: 12vw;
 }
 .mixin-container > h2 {
   margin: 0 0 3vw 0;
@@ -237,6 +239,7 @@ body {
   border-bottom: 1px outset white;
   padding: 0 3vw 2vw 3vw;
   opacity: .9;
+  text-shadow: 5px 5px 10px rgb(0 0 0 / .9);
 }
 .mix-images-container {
   display: flex;
@@ -268,8 +271,148 @@ body {
   margin-top: 1vw;
   opacity: .8;
 }
-/* NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE */
+/* End of main Ingredients end of main Ingredients */
 
+/* Customer quote customer quote customer quote */
+.customer-container {
+  background: url('/images/wood2.jpg') no-repeat;
+  background-size: cover;
+  width: 100%;
+  opacity: .8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  box-shadow: 5px 5px 10px rgb(0 0 0 /.9);
+  margin: 10vw 0;
+}
+.customer-image {
+  width: 20%;
+  margin: 4vw 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.customer-image > p {
+  font-size: 22px;
+  /* text-shadow: 2px 2px 5px rgb(0 0 0 /.8); */
+  background: rgb(0 0 0 / .5);
+  padding: .5vw 3vw;
+  margin-top: 1vw;
+  text-shadow: 5px 5px 10px rgb(0 0 0 / .9);
+}
+.photo-container {
+  width: 100%;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / .8);
+}
+.photo-container > img {
+  width: 100%;
+  display: block;
+}
+.customer-quote {
+  width: 65%;
+  padding: 2vw;
+  background: rgb(0 0 0 /.7);
+}
+.customer-quote > h4 {
+  font-size: 35px;
+  margin-bottom: 3vw;
+}
+.customer-quote > p {
+  font-size: 18px;
+}
+/* Customer quote customer quote customer quote */
+.main-creations {
+  margin: 7vw 2vw;
+}
+.main-creations > h2 {
+  text-align: center;
+  width: 40%;
+  margin: 0 auto 3vw auto;
+  font-size: 5vw;
+  border-bottom: 1px outset white;
+  padding: 0 0 1vw 0;
+  opacity: .9;
+  text-shadow: 5px 5px 10px rgb(0 0 0 / .9);
+}
+.creations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.coffee-item {
+  width: 30%;
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 3vw;
+  box-shadow: 3px 3px 10px rgb(0 0 0/.9);
+}
+.coffee-item > img {
+  /* max-width: 700px; */
+  width: 100%;
+  filter: grayscale(.1);
+  display: block;
+}
+.see-more {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2vw;
+}
+.see-more > a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  transition: all .5s ease;
+}
+.see-more > a:hover {
+  text-decoration: underline;
+  color: grey;
+  text-shadow: 3px 3px 10px rgb(0 0 0/.9);
+  transform: scale(1.1);
+}
+.overlay {
+  position: absolute;
+  bottom:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0, 0, 0, 0.6); */
+  background: rgb(255,255,255);
+  background: linear-gradient(177deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8911939775910365) 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.overlay > * {
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+.overlay:hover {
+  opacity: 1;
+}
+.overlay:hover > * {
+  transform: translateY(0);
+}
+.coffee-title {
+  font-size: 3vw;
+  font-family: 'Parisienne',cursive;
+}
+.coffee-quote {
+  font-size: 18px;
+}
+/* NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE NEW PAGE */
 .container-form {
   margin: 140px auto 0 auto;
   display: flex;
@@ -321,6 +464,7 @@ input {
   margin: 5vw 0 10vw 0;
 }
 /* new page new page new page new page new page */
+
 /* footer footer footer footer footer footer */
 footer {
   width: 100%;
@@ -381,4 +525,22 @@ footer {
 /* userdrinks userdrinks userdrinks */
 .flex-container {
   height: 90vh;
+  margin: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url('/images/honey-drip.png') no-repeat;
+  background-size: contain;
+  width: 100vw;
+}
+.flex-container > h3 {
+  font-size: 5vw;
+  margin-top: 12vw;
+  border-bottom: 1px outset white;
+  padding: 1vw 2vw;
+  text-shadow: 3px 5px 10px rgb(0 0 0/.9);
+}
+.delete-button {
+  background: white;
 }
