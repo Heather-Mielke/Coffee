@@ -10,18 +10,21 @@
         <h2>Modify Your Drink</h2>
       </div>
       <div class="form-container">
-        <form  action="/coffee/usercreations/<%=coffee.id"%>?_method=PUT" method="POST">
+        <form  action="/coffee/usercreations/<%=coffee.id%>?_method=PUT" method="POST">
           <label for="name">Name Your Drink:</label><br/>
           <input type="text" name="name" value="<%= coffee.name %>">
+          <label for="type">Hot or Iced: </label><br/>
+          <input type="text" name="type" value="<%= coffee.type %>">
           <label for="base">Coffee or Esspresso:</label><br/>
           <input type="text" name="base" value="<%= coffee.base %>">
+
           <label for="dairy">Milk or Cream:</label><br/>
           <input type="text" name="dairy" value="<%= coffee.dairy %>">
           <label for="syrup">Syrup:</label><br/>
           <input type="text" name="syrup" value="<%= coffee.syrup %>">
           <label for="added">Powders and Others: </label><br/>
           <input type="text" name="added" value="<%= coffee.added %>">
-          <input class="submit-button" type="submit" value="Create Drink">
+          <input class="submit-button" type="submit" value="Edit Drink">
         </form>
       </div>
       </section>

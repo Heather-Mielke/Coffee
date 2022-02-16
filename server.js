@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 //___________________
 //Dependencies
 //___________________
@@ -7,7 +10,20 @@ const mongoose = require('mongoose');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
-const Coffee = require('./models/coffeeflavors.js')
+const Coffee = require('./models/coffeeflavors.js');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session');
+
+
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
+const users = [];
 //___________________
 //Port
 //___________________
@@ -43,43 +59,84 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
+app.use(flash())
+app.set("view engine", "ejs");
 
+
+app.use(session({
+  //sets password from env file
+  secret: process.env.SESSION_SECRET,
+  //wont save if nothing is changed
+  resave: false,
+  //wont save empty information
+  saveUninitialized: false
+}))
+//sets up
+app.use(passport.initialize())
+//connects with session above
+app.use(passport.session())
+
+
+//___________________
+// Login/Register
+//___________________
+app.get('/login', checkNotAuthenticated, (req, res) => {
+  res.render('login.ejs');
+})
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/coffee',
+  failedRedirect: '/login',
+  //displays error message
+  failureFlash: true
+}))
+
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.render('register.ejs')
+})
+
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+  try{
+    const hashedPassword = await
+    //hashes password, 10 is standard
+     bcrypt.hash(req.body.password, 10)
+    users.push({
+      id: Date.now().toString(),
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword
+    })
+    res.redirect('/login')
+  }catch{
+    res.redirect('/register')
+  }
+  console.log(users);
+})
+
+app.delete('/logout', (req, res) => {
+  //function from passport
+  req.logOut()
+  res.redirect('/login')
+})
 
 //___________________
 // Routes
 //___________________
 //localhost:3000
-app.get('/' , (req, res) => {
-  res.send('Hello World!');
-});
 
-app.get('/coffee', (req, res) => {
+app.get('/coffee', checkAuthenticated, (req, res) => {
   res.render('index.ejs')
 })
-
-app.get('/coffee/creations', (req, res) => {
-  res.render('hello')
-})
-
-app.get('/coffee/new', (req, res) => {
+app.get('/coffee/new', checkAuthenticated, (req, res) => {
   res.render('new.ejs');
 })
-app.put('/coffee/usercreations:id', (req, res) => {
-  res.send('updating.....')
-  // Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedDrink) => {
-  //   res.redirect('coffee/usercreations')
-  // })
+
+app.get('/coffee/creations', checkAuthenticated, (req, res) => {
+  res.render('creations.ejs')
 })
 
-app.get('/coffee/usercreations', (req, res) => {
-  Coffee.find({}, (error, allCoffee) => {
-    res.render('userdrinks.ejs',
-    {
-      coffee: allCoffee
-    })
-  })
+app.get('/coffee/loginuser', checkAuthenticated, (req, res) => {
+  res.render('login.ejs')
 })
-
 app.get('/coffee/:id/edit', (req, res) => {
   Coffee.findById(req.params.id , (error, foundCoffee) => {
     res.render('edit.ejs',
@@ -88,13 +145,30 @@ app.get('/coffee/:id/edit', (req, res) => {
     })
   })
 })
-app.delete('/coffee/usercreations/:id', (req, res) => {
-  Coffee.findByIdAndRemove(req.params.id, (error, data) => {
-    console.log(error);
-    res.send("Being deleted....");
+
+app.put('/coffee/usercreations:id', checkAuthenticated, (req, res) => {
+  // res.send('updating.....')
+  Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedDrink) => {
+    res.redirect('coffee/usercreations')
   })
 })
-app.post('/coffee/usercreations', (req, res) => {
+
+app.get('/coffee/usercreations', checkAuthenticated, (req, res) => {
+  Coffee.find({}, (error, allCoffee) => {
+    res.render('userdrinks.ejs',
+    {
+      coffee: allCoffee
+    })
+  })
+})
+
+app.delete('/coffee/usercreations/:id', checkAuthenticated, (req, res) => {
+  Coffee.findByIdAndRemove(req.params.id, (error, data) => {
+    // console.log(error);
+    res.redirect('/coffee/usercreations');
+  })
+})
+app.post('/coffee/usercreations', checkAuthenticated, (req, res) => {
   Coffee.create(req.body, (error, newCoffee) => {
   //   if (error) {
   //     console.log(error);
@@ -104,6 +178,27 @@ app.post('/coffee/usercreations', (req, res) => {
   res.redirect('/coffee/usercreations')
   })
 })
+
+
+//-------------------
+//Functions to check user being logged in
+//-------------------
+
+
+function checkAuthenticated(req,res,next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next){
+  if (req.isAuthenticated()) {
+    return res.redirect('/coffee')
+  }
+  next()
+}
+
 
 
 //___________________
