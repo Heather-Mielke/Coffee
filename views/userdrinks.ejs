@@ -5,20 +5,15 @@
   </head>
   <body>
       <%- include('./partials/header.ejs') %>
-  
+
       <section class="flex-container">
         <h3>Your Creations</h3>
         <div class="all-drinks">
           <% for(let i = 0; i < coffee.length; i++) { %>
             <div class="coffee-container">
+              <a href="/coffee/usercreations/<%= coffee[i].id%>">
               <h4><%= coffee[i].name %></h4>
-              <ul>
-                <li class="drink-list">Type: <%= coffee[i].type %></li>
-                <li class="drink-list">Base: <%= coffee[i].base %></li>
-                <li class="drink-list">Dairy: <%= coffee[i].dairy %></li>
-                <li class="drink-list">Syrup/s: <%= coffee[i].syrup %></li>
-                <li class="drink-list">Additionals: <%= coffee[i].added %></li>
-              </ul>
+              </a>
               <div class="coffee-buttons">
                 <a class="edit-link" href="/coffee/<%=coffee[i].id%>/edit">EDIT</a>
                 <form action="/coffee/usercreations/<%= coffee[i].id %>?_method=DELETE" method="POST">

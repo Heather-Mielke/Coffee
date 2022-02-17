@@ -10,7 +10,7 @@
         <h2>Modify Your Drink</h2>
       </div>
       <div class="form-container">
-        <form  action="/coffee/usercreations/<%=coffee.id%>?_method=PUT" method="POST">
+        <form  action="/coffee/usercreations/<%= coffee.id %>?_method=PUT" method="POST">
           <label for="name">Name Your Drink:</label><br/>
           <input type="text" name="name" value="<%= coffee.name %>">
           <label for="type">Hot or Iced: </label><br/>

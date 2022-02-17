@@ -122,6 +122,20 @@ app.delete('/logout', (req, res) => {
 // Routes
 //___________________
 //localhost:3000
+app.get('/coffee/usercreations', checkAuthenticated, (req, res) => {
+  Coffee.find({}, (error, allCoffee) => {
+    res.render('userdrinks.ejs',
+    {
+      coffee: allCoffee
+    })
+  })
+})
+app.put('/coffee/usercreations/:id', (req, res) => {
+  // res.send('updating.....')
+  Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedDrink) => {
+    res.redirect('/coffee/usercreations')
+  })
+})
 
 app.get('/coffee', checkAuthenticated, (req, res) => {
   res.render('index.ejs')
@@ -133,9 +147,13 @@ app.get('/coffee/new', checkAuthenticated, (req, res) => {
 app.get('/coffee/creations', checkAuthenticated, (req, res) => {
   res.render('creations.ejs')
 })
-
-app.get('/coffee/loginuser', checkAuthenticated, (req, res) => {
-  res.render('login.ejs')
+app.get('/coffee/usercreations/:id', (req, res) => {
+  Coffee.findById(req.params.id, (err, foundCoffee) => {
+    res.render('show.ejs',
+    {
+      coffee:foundCoffee
+    })
+  })
 })
 app.get('/coffee/:id/edit', (req, res) => {
   Coffee.findById(req.params.id , (error, foundCoffee) => {
@@ -146,21 +164,8 @@ app.get('/coffee/:id/edit', (req, res) => {
   })
 })
 
-app.put('/coffee/usercreations:id', checkAuthenticated, (req, res) => {
-  // res.send('updating.....')
-  Coffee.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedDrink) => {
-    res.redirect('coffee/usercreations')
-  })
-})
 
-app.get('/coffee/usercreations', checkAuthenticated, (req, res) => {
-  Coffee.find({}, (error, allCoffee) => {
-    res.render('userdrinks.ejs',
-    {
-      coffee: allCoffee
-    })
-  })
-})
+
 
 app.delete('/coffee/usercreations/:id', checkAuthenticated, (req, res) => {
   Coffee.findByIdAndRemove(req.params.id, (error, data) => {
@@ -168,6 +173,7 @@ app.delete('/coffee/usercreations/:id', checkAuthenticated, (req, res) => {
     res.redirect('/coffee/usercreations');
   })
 })
+
 app.post('/coffee/usercreations', checkAuthenticated, (req, res) => {
   Coffee.create(req.body, (error, newCoffee) => {
   //   if (error) {
@@ -184,7 +190,6 @@ app.post('/coffee/usercreations', checkAuthenticated, (req, res) => {
 //Functions to check user being logged in
 //-------------------
 
-
 function checkAuthenticated(req,res,next) {
   if (req.isAuthenticated()) {
     return next()
@@ -198,8 +203,6 @@ function checkNotAuthenticated(req, res, next){
   }
   next()
 }
-
-
 
 //___________________
 //Listener

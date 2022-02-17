@@ -5,9 +5,24 @@
   </head>
   <body>
       <%- include('./partials/header.ejs') %>
-
-
-    <footer>
+      <section class="show-container">
+      <div class="coffee-container2">
+        <div class="content-container">
+      <h1><%=coffee.name%></h1>
+      <ul>
+        <li class="drink-list">Type: <%= coffee.type %></li>
+        <li class="drink-list">Base: <%= coffee.base %></li>
+        <li class="drink-list">Dairy: <%= coffee.dairy %></li>
+        <li class="drink-list">Syrup/s: <%= coffee.syrup %></li>
+        <li class="drink-list">Additionals: <%= coffee.added %></li>
+      </ul>
+      </div>
+      <div class="image">
+        <img src="/images/CoffeeCreations.png" width="300" alt="">
+      </div>
+    </div>
+    </section>
+    <footer class="footer2">
       <%- include('./partials/footer.ejs') %>
     </footer>
   </body>
