@@ -80,12 +80,12 @@ app.use(passport.session())
 //___________________
 // Login/Register
 //___________________
-app.get('/login', checkNotAuthenticated, (req, res) => {
+app.get('/', checkNotAuthenticated, (req, res) => {
   res.render('login.ejs');
 })
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+app.post('/', checkNotAuthenticated, passport.authenticate('local', {
   successRedirect: '/coffee',
-  failedRedirect: '/login',
+  failedRedirect: '/',
   //displays error message
   failureFlash: true
 }))
@@ -105,7 +105,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       email: req.body.email,
       password: hashedPassword
     })
-    res.redirect('/login')
+    res.redirect('/')
   }catch{
     res.redirect('/register')
   }
@@ -115,7 +115,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 app.delete('/logout', (req, res) => {
   //function from passport
   req.logOut()
-  res.redirect('/login')
+  res.redirect('/')
 })
 
 //___________________
@@ -194,7 +194,7 @@ function checkAuthenticated(req,res,next) {
   if (req.isAuthenticated()) {
     return next()
   }
-  res.redirect('/login')
+  res.redirect('/')
 }
 
 function checkNotAuthenticated(req, res, next){
