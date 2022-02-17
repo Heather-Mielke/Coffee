@@ -24,6 +24,11 @@
           <% } %>
         </div>
       </section>
+      <div class="logout-container">
+        <form class="" action="/logout?_method=DELETE" method="POST">
+          <button class="logout-button" type="submit">Log Out</button>
+        </form>
+      </div>
     <footer>
       <%- include('./partials/footer.ejs') %>
     </footer>
