@@ -12,19 +12,25 @@
       <div class="form-container">
         <form  action="/coffee/usercreations/<%= coffee.id %>?_method=PUT" method="POST">
           <label for="name">Name Your Drink:</label><br/>
-          <input type="text" name="name" value="<%= coffee.name %>">
+          <input class="inputs" type="text" name="name" value="<%= coffee.name %>">
           <label for="type">Hot or Iced: </label><br/>
-          <input type="text" name="type" value="<%= coffee.type %>">
+          <select class="inputs" name="type" value="<%=coffee.type %>">
+            <option value="hot">Hot</option>
+            <option value="iced">Iced</option>
+          </select>
           <label for="base">Coffee or Esspresso:</label><br/>
-          <input type="text" name="base" value="<%= coffee.base %>">
-
+          <select class="inputs" name="base" value="<%=coffee.base %>">
+            <option value="coffee">Coffee</option>
+            <option value="espresso">Espresso</option>
+            <option value="blonde">Blonde Espresso</option>
+          </select>
           <label for="dairy">Milk or Cream:</label><br/>
-          <input type="text" name="dairy" value="<%= coffee.dairy %>">
+          <input class="inputs" type="text" name="dairy" value="<%= coffee.dairy %>">
           <label for="syrup">Syrup:</label><br/>
-          <input type="text" name="syrup" value="<%= coffee.syrup %>">
+          <input class="inputs" type="text" name="syrup" value="<%= coffee.syrup %>">
           <label for="added">Powders and Others: </label><br/>
-          <input type="text" name="added" value="<%= coffee.added %>">
-          <input class="submit-button" type="submit" value="Edit Drink">
+          <input class="inputs" type="text" name="added" value="<%= coffee.added %>">
+          <input class="inputs submit-button" type="submit" value="Edit Drink">
         </form>
       </div>
       </section>

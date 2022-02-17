@@ -12,18 +12,25 @@
       <div class="form-container">
         <form  action="/coffee/usercreations" method="POST">
           <label for="name">Name Your Drink:</label><br/>
-          <input type="text" name="name" placeholder="Vanilla Mocha Latte">
+          <input class="inputs" type="text" name="name" placeholder="Vanilla Mocha Latte">
           <label for="type">Hot or Iced:</label>
-          <input type="text" name="type" placeholder="Iced">
+          <select class="inputs" name="type">
+            <option value="hot">Hot</option>
+            <option value="iced">Iced</option>
+          </select>
           <label for="base">Coffee or Esspresso:</label><br/>
-          <input type="text" name="base" placeholder="Esspresso">
+          <select class="inputs" name="base">
+            <option value="coffee">Coffee</option>
+            <option value="espresso">Espresso</option>
+            <option value="blonde">Blonde Espresso</option>
+          </select>
           <label for="dairy">Milk or Cream:</label><br/>
-          <input type="text" name="dairy" placeholder="Almond Milk">
+          <input class="inputs" type="text" name="dairy" placeholder="Almond Milk">
           <label for="syrup">Syrup:</label><br/>
-          <input type="text" name="syrup" placeholder="Vanilla, White Chocolate, Caramel">
+          <input class="inputs" type="text" name="syrup" placeholder="Vanilla, White Chocolate, Caramel">
           <label for="added">Powders and Others: </label><br/>
-          <input type="text" name="added" placeholder="Sugar, Cinnomon, Nutmeg">
-          <input class="submit-button" type="submit" value="Create Drink">
+          <input class="inputs" type="text" name="added" placeholder="Sugar, Cinnomon, Nutmeg">
+          <input class="inputs submit-button" type="submit" value="Create Drink">
         </form>
       </div>
       </section>

@@ -11,9 +11,14 @@
         <div class="all-drinks">
           <% for(let i = 0; i < coffee.length; i++) { %>
             <div class="coffee-container">
-              <a href="/coffee/usercreations/<%= coffee[i].id%>">
-              <h4><%= coffee[i].name %></h4>
+              <a class="show-link" href="/coffee/usercreations/<%= coffee[i].id%>">
+              <h4 class="show-link"><%= coffee[i].name %></h4>
               </a>
+              <% if (coffee[i].type === "Hot" || coffee[i].type === "hot") { %>
+                <img src="/images/hot-coffee.jpg" alt="">
+              <%}else if (coffee[i].type === "Iced" || coffee[i].type === "iced") { %>
+                <img src="/images/iced-coffee.jpg" alt="">
+              <%} %>
               <div class="coffee-buttons">
                 <a class="edit-link" href="/coffee/<%=coffee[i].id%>/edit">EDIT</a>
                 <form action="/coffee/usercreations/<%= coffee[i].id %>?_method=DELETE" method="POST">
